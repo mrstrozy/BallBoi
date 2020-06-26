@@ -67,7 +67,7 @@ class Retriever:
                  data:     dict = {},
                  reqType:  str  = 'GET',
                  resource: str  = '',
-                 ) -> dict:
+                 ) -> list:
         '''
         Make a request to the API.
 
@@ -86,9 +86,15 @@ class Retriever:
         # Add our API Key
         data.update({'api_key': self.apiKey})
         # Make request
-        return self.connection.make_request(data=data,
-                                            request_type=reqType,
-                                            resource=resource)
+        response = self.connection.make_request(data=data,
+                                                request_type=reqType,
+                                                resource=resource)
+
+        try:
+            responseJson = response.json()
+        except Exception as e:
+            responseJson = {}
+        return responseJson
                                             
     def get_schedule(self,
                      **kwargs,
@@ -138,7 +144,6 @@ class Retriever:
                 err = 'Invalid season type. Type must be PRE, REG or POST'
                 raise InvalidSeasonTypeError(err)
 
-        response = self._request(data=params,
-                                 reqType=reqType,
-                                 resource=resource)
-        return response
+        return self._request(data=params,
+                             reqType=reqType,
+                             resource=resource)
