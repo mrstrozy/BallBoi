@@ -8,13 +8,13 @@ import logging
 #------------------------------------------------------------------------------
 # Non-Standard Library From Imports
 #------------------------------------------------------------------------------
-from connection import Connection
-from retriever  import RetrieverInterface
-from util       import build_params
+from strotools.ballboi.retriever  import RetrieverInterface
+from strotools.common.connection  import Connection
+from strotools.common.util        import build_params
 #------------------------------------------------------------------------------
 # Exceptions
 #------------------------------------------------------------------------------
-from util import InvalidParamsError
+from strotools.common.util import InvalidParamsError
 
 class InvalidSeasonTypeError(Exception):
     ''' Thrown if incorrect season type is provided '''
@@ -140,8 +140,7 @@ class NFLRetriever(RetrieverInterface):
 
         if not seasonType:
             params['season_type'] = 'REG'
-        else:
-            if seasonType not in ('PRE', 'REG', 'POST',):
+        elif seasonType not in ('PRE', 'REG', 'POST',):
                 err = 'Invalid season type. Type must be PRE, REG or POST'
                 raise InvalidSeasonTypeError(err)
 
