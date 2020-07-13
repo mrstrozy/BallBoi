@@ -140,8 +140,7 @@ class NFLRetriever(RetrieverInterface):
 
         if not seasonType:
             params['season_type'] = 'REG'
-        else:
-            if seasonType not in ('PRE', 'REG', 'POST',):
+        elif seasonType not in ('PRE', 'REG', 'POST',):
                 err = 'Invalid season type. Type must be PRE, REG or POST'
                 raise InvalidSeasonTypeError(err)
 
