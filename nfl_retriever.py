@@ -9,6 +9,7 @@ import logging
 # Non-Standard Library From Imports
 #------------------------------------------------------------------------------
 from connection import Connection
+from retriever  import RetrieverInterface
 from util       import build_params
 #------------------------------------------------------------------------------
 # Exceptions
@@ -18,7 +19,7 @@ from util import InvalidParamsError
 class InvalidSeasonTypeError(Exception):
     ''' Thrown if incorrect season type is provided '''
 
-class Retriever:
+class NFLRetriever(RetrieverInterface):
     ''' Base class for retrieving NFL info '''
     def __init__(self,
                  apiKey: str,
