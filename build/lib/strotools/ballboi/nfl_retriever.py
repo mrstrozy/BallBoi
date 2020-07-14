@@ -147,3 +147,35 @@ class NFLRetriever(RetrieverInterface):
         return self._request(data=params,
                              reqType=reqType,
                              resource=resource)
+
+def get_nfl_parser(parser=None):
+  '''
+  Add args to the inputted parser or return a new NFL parser
+
+  Args:
+    [Optional]parser::ArgumentParser
+      Parser to add args to (default::None - new parser will be created)
+  '''
+  if not parser:
+    parser = ArgumentParser('BallBoi NFL')
+  
+  parser.add_argument('-ak', '--api-key',
+                      action='store',
+                      default='',
+                      help='API key to use with profootballapi',
+                      type=str,
+                      )
+  return parser
+
+def add_nfl_parser_to_subparser(subparser):
+    '''
+    Add the nfl subparser to a parent parser
+
+    Args:
+      subparser::ArgumentParser.subparser
+        Subparser to add parser to
+    '''
+    nflParser = subparser.add_parser('nfl',
+                                     help='Retrieve NFL stats/info')
+    get_nfl_parser(parser=nflParser)
+    return nflParser
