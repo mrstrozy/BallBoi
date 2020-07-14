@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="strotools.ballboi", # Replace with your own username
-    version="0.0.3",
+    version="0.0.41",
     author="Matthew Strozyk",
     author_email="mstrozyk25@gmail.com",
     description="Package to retrieve sports information",
@@ -20,4 +20,5 @@ setuptools.setup(
     ],
     python_requires='>=3.6',
     install_requires=['strotools.common',],
+    scripts=['scripts/ballboi',],
 )

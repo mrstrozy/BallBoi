@@ -1,3 +1,7 @@
 
 *.pyc
 *.pyo
+
+build/*
+dist/*
+strotools.ballboi.egg-info/*
